@@ -1,0 +1,16 @@
+STK8BA58	KEYWORD1
+begin	KEYWORD2
+setRange	KEYWORD2
+range	KEYWORD2
+setOrientation	KEYWORD2
+accelerationAvailable	KEYWORD2
+readAcceleration	KEYWORD2
+readAccelerationMS2	KEYWORD2
+readRaw	KEYWORD2
+readX	KEYWORD2
+readY	KEYWORD2
+readZ	KEYWORD2
+readRegister	KEYWORD2
+writeRegister	KEYWORD2
+CHIP	LITERAL1
+PICOBOY_COLOR_PLUS	LITERAL1
