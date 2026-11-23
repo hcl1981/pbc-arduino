@@ -15,7 +15,7 @@ Gegenüber Arduino-Pico {KERN} sind nur diese Dinge anders:
 - `platform.txt`: Name und Version dieses Pakets.
 - Die Ordner `docs` und `tests` fehlen; sie werden zum Bauen nicht gebraucht.
 - Zusätzlich im Ordner `libraries`:
-  - **PicoBoy Color Plus**: sieben Beispiele aus dem Handbuch „Programmieren
+  - **PicoBoy Color Plus**: fünf Beispiele aus dem Handbuch „Programmieren
     mit Arduino“ und eine Datei mit der Pinbelegung (© Jan Schulz, CC0)
   - **STK8BA58**: Bibliothek für den Neigungssensor aus dem Handbuch (CC0)
   - **Adafruit GFX Library** (BSD), **Adafruit BusIO** (MIT), **Adafruit

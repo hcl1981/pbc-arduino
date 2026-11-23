@@ -9,7 +9,7 @@ braucht:
 - die Upload-Methode **PBConPC (Emulator)**: Hochladen startet den Sketch im
   Emulator [PBConPC](https://github.com/hcl1981/PBConPC) statt auf dem Gerät,
   ganz ohne PicoBoy (Windows und Linux),
-- sieben **Beispiele** aus dem Handbuch unter **Datei → Beispiele → PicoBoy Color Plus**,
+- fünf **Beispiele** aus dem Handbuch unter **Datei → Beispiele → PicoBoy Color Plus**,
 - die Bibliotheken für Display, RGB-LED und Neigungssensor.
 
 Es beruht auf [Arduino-Pico](https://github.com/earlephilhower/arduino-pico)
