@@ -9,7 +9,7 @@ braucht:
 - die Upload-Methode **PBConPC (Emulator)**: Hochladen startet den Sketch im
   Emulator [PBConPC](https://github.com/hcl1981/PBConPC) statt auf dem Gerät,
   ganz ohne PicoBoy (Windows und Linux),
-- fünf **Beispiele** aus dem Handbuch unter **Datei → Beispiele → PicoBoy Color Plus**,
+- fünf **Beispiele** (englisch, nach dem Handbuch) unter **Datei → Beispiele → PicoBoy Color Plus**,
 - die Bibliotheken für Display, RGB-LED und Neigungssensor.
 
 Es beruht auf [Arduino-Pico](https://github.com/earlephilhower/arduino-pico)
@@ -39,7 +39,6 @@ PBConPC gibt es für Windows und Linux (x86-64), noch nicht für macOS.
 ## Bauen
 
 ```bash
-python3 werkzeuge/beispiele_holen.py ~/Documents/pbcplus/buecher/dokumentation_arduino/buch/programme
 python3 werkzeuge/paket_bauen.py --version 1.0.0 --kern 6.4.0 --pbconpc 1.1.0 \
     --basis-url https://github.com/hcl1981/pbc-arduino/releases/download/v1.0.0
 ```

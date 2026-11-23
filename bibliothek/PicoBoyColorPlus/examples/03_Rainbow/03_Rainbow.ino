@@ -1,11 +1,11 @@
-// Die RGB-LED laeuft langsam durch alle Farben des Regenbogens
+// The RGB LED slowly fades through all the colours of the rainbow
 #include <Adafruit_NeoPixel.h>
 
 #define RGB_LED 11
 
 Adafruit_NeoPixel rgb(1, RGB_LED, NEO_GRB + NEO_KHZ800);
 
-uint16_t farbton = 0;       // 0 bis 65535: einmal rund um den Farbkreis
+uint16_t hue = 0;           // 0 to 65535: once around the colour wheel
 
 void setup() {
     rgb.begin();
@@ -13,9 +13,9 @@ void setup() {
 }
 
 void loop() {
-    uint32_t farbe = rgb.gamma32(rgb.ColorHSV(farbton));
-    rgb.setPixelColor(0, farbe);
+    uint32_t colour = rgb.gamma32(rgb.ColorHSV(hue));
+    rgb.setPixelColor(0, colour);
     rgb.show();
-    farbton = farbton + 256;    // nach 256 Schritten ist der Kreis rund
+    hue = hue + 256;            // after 256 steps the wheel is complete
     delay(20);
 }
