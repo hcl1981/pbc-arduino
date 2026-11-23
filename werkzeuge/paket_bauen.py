@@ -69,7 +69,8 @@ def boards_txt(kern_boards):
             continue
         schluessel, _, wert = z.partition('=')
         teile = schluessel.split('.')
-        if len(teile) > 3 and teile[1] == 'menu' and teile[2] == 'flash' and teile[3] != FLASH:
+        # nur die Aufteilungen für 16 MB; die erste ist die Voreinstellung (siehe unten)
+        if len(teile) > 3 and teile[1] == 'menu' and teile[2] == 'flash' and not teile[3].startswith('16777216_'):
             continue
         schluessel = BOARD + schluessel[len(QUELLE):]
         if schluessel == BOARD + '.name':
@@ -91,6 +92,16 @@ def boards_txt(kern_boards):
                     p + '.upload.wait_for_upload_port=false']
     if not aus:
         raise SystemExit('Generic RP2350 fehlt im Kern')
+    # Flash-Menü: 8 MB Sketch / 8 MB Dateisystem zuerst, das macht sie zur Voreinstellung
+    praefix = BOARD + '.menu.flash.'
+    flash = [z for z in aus if z.startswith(praefix)]
+    if not any(z.startswith(praefix + FLASH) for z in flash):
+        raise SystemExit('Flash-Einstellung ' + FLASH + ' fehlt im Kern')
+    erst = [z for z in flash if z.startswith(praefix + FLASH + '=') or z.startswith(praefix + FLASH + '.')]
+    rest = [z for z in flash if z not in erst]
+    pos = aus.index(flash[0])
+    aus = [z for z in aus if not z.startswith(praefix)]
+    aus[pos:pos] = erst + rest
     kopf = ['# PicoBoy Color Plus – aus „Generic RP2350“ des Arduino-Pico-Kerns erzeugt', '']
     return '\n'.join(kopf + menues + [''] + aus) + '\n'
 
@@ -99,7 +110,7 @@ def platform_txt(kern_platform, version, kern_version):
     aus = []
     for z in kern_platform.splitlines():
         if z.startswith('name='):
-            z = 'name=PicoBoy Color Plus (Arduino-Pico ' + kern_version + ')'
+            z = 'name=PicoBoy Color Plus'
         elif z.startswith('version='):
             z = 'version=' + version
         aus.append(z)

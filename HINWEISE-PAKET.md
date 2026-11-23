@@ -8,7 +8,8 @@ Version {VERSION}, beruht auf **Arduino-Pico {KERN}** von Earle F. Philhower, II
 Gegenüber Arduino-Pico {KERN} sind nur diese Dinge anders:
 
 - `boards.txt` enthält nur das Board **PicoBoy Color Plus**. Es entspricht
-  „Generic RP2350“ mit 16 MB Flash, davon 8 MB Dateisystem, und dem
+  „Generic RP2350“ mit den Flash-Aufteilungen für 16 MB (voreingestellt:
+  8 MB Sketch, 8 MB Dateisystem) und dem
   USB-Namen „PicoBoy Color Plus“.
 - Zusätzliche Upload-Methode **PBConPC (Emulator)**: Sie startet den Sketch im
   Emulator PBConPC statt auf dem Gerät (`platform.txt`, Werkzeug `pbconpc`).

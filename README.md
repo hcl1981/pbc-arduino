@@ -5,7 +5,7 @@ was man für das Handbuch [Programmieren mit Arduino](https://pbcplus.de/program
 braucht:
 
 - das Board **PicoBoy Color Plus** mit den richtigen Einstellungen
-  (16 MB Flash, davon 8 MB Dateisystem),
+  (16 MB Flash, voreingestellt 8 MB davon als Dateisystem),
 - die Upload-Methode **PBConPC (Emulator)**: Hochladen startet den Sketch im
   Emulator [PBConPC](https://github.com/hcl1981/PBConPC) statt auf dem Gerät,
   ganz ohne PicoBoy (Windows und Linux),
