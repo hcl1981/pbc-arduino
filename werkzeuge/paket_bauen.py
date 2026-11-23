@@ -38,6 +38,27 @@ BIBLIOTHEKEN = [                     # was die Beispiele brauchen, in festen Ver
     ('Adafruit ST7735 and ST7789 Library', '1.12.0'),
     ('Adafruit NeoPixel', '1.15.5'),
 ]
+# Bibliotheken des Kerns für Hardware, die der PBC+ nicht hat (Funk, Netzwerk,
+# Kamera, Mikrofon, SD-Karte). Sie fallen weg, damit das Beispiel-Menü übersichtlich bleibt.
+OHNE_BIBLIOTHEKEN = {
+    'ArduinoOTA', 'AsyncUDP', 'BLE', 'BTstackLib', 'BluetoothAudio', 'BluetoothHCI', 'BluetoothHIDMaster',
+    'DNSServer', 'ESPHost', 'HID_Bluetooth', 'HTTPClient', 'HTTPUpdate', 'HTTPUpdateServer', 'JoystickBLE',
+    'JoystickBT', 'KeyboardBLE', 'KeyboardBT', 'LEAmDNS', 'MouseBLE', 'MouseBT', 'NetBIOS', 'PDM', 'PicoCamera',
+    'SD', 'SDFS', 'SdFat', 'SerialBT', 'SimpleMDNS', 'WebServer', 'WiFi', 'http-parser', 'iLabs_ESP-NOW',
+    'iLabs_Hearth', 'lwIP_CYW43', 'lwIP_ESPHost', 'lwIP_Ethernet', 'lwIP_USB_NCM', 'lwIP_WINC1500',
+    'lwIP_enc28j60', 'lwIP_w5100', 'lwIP_w5500', 'lwIP_w55rp20', 'lwIP_w6100', 'lwIP_w6300', 'tusb-ncm',
+}
+# Beispiele verbliebener Bibliotheken, die eine der entfernten brauchen
+OHNE_BEISPIELE = (
+    'libraries/Adafruit_TinyUSB_Arduino/examples/MassStorage/msc_sd/',
+    'libraries/Adafruit_TinyUSB_Arduino/examples/MassStorage/msc_esp32_file_browser/',
+    'libraries/SoftwareSPI/examples/W5500SoftwareSPI/',
+    'libraries/SoftwareSPI/examples/FilesSoftwareSPI/',
+    'libraries/LittleFS/examples/SpeedTest/',
+    'libraries/VFS/examples/VFSMultipleMounts/',
+    'libraries/Adafruit_ST7735_and_ST7789_Library/examples/shieldtest/',
+    'libraries/Adafruit_ST7735_and_ST7789_Library/examples/seesaw_shield18_test/',
+)
 WINDOWS = ('x86_64-mingw32', 'i686-mingw32')
 LINUX64 = 'x86_64-pc-linux-gnu'
 
@@ -172,7 +193,7 @@ def plattform_bauen(args, kern_zip):
                 oben = bz.namelist()[0].split('/')[0] + '/'
                 for info in bz.infolist():
                     rel = info.filename[len(oben):]
-                    if not rel or info.is_dir():
+                    if not rel or info.is_dir() or f'libraries/{ordner}/{rel}'.startswith(OHNE_BEISPIELE):
                         continue
                     neu = zipfile.ZipInfo(f'{name}/libraries/{ordner}/{rel}', info.date_time)
                     neu.compress_type = zipfile.ZIP_DEFLATED
@@ -181,7 +202,12 @@ def plattform_bauen(args, kern_zip):
         oben = ein.namelist()[0].split('/')[0] + '/'
         for info in ein.infolist():
             rel = info.filename[len(oben):]
-            if not rel or rel.split('/')[0] in ('docs', 'tests'):
+            teile = rel.split('/')
+            if not rel or teile[0] in ('docs', 'tests'):
+                continue
+            if teile[0] == 'libraries' and len(teile) > 1 and teile[1] in OHNE_BIBLIOTHEKEN:
+                continue
+            if rel.startswith(OHNE_BEISPIELE):
                 continue
             daten = None if info.is_dir() else ein.read(info)
             if rel == 'boards.txt':

@@ -15,6 +15,11 @@ Gegenüber Arduino-Pico {KERN} sind nur diese Dinge anders:
   Emulator PBConPC statt auf dem Gerät (`platform.txt`, Werkzeug `pbconpc`).
 - `platform.txt`: Name und Version dieses Pakets.
 - Die Ordner `docs` und `tests` fehlen; sie werden zum Bauen nicht gebraucht.
+- Bibliotheken für Hardware, die der PBC+ nicht hat, fehlen: Funk (WiFi,
+  Bluetooth, BLE, BTstack, ESP-NOW), Netzwerk (HTTP, WebServer, DNS, mDNS,
+  OTA übers Netz, lwIP für Netzwerkchips), Kamera, Mikrofon (PDM) und
+  SD-Karte (SD, SdFat, SDFS). Mit ihnen fehlen acht Beispiele anderer
+  Bibliotheken, die eine davon brauchen.
 - Zusätzlich im Ordner `libraries`:
   - **PicoBoy Color Plus**: fünf Beispiele (englisch) nach dem Handbuch
     „Programmieren mit Arduino“ und eine Datei mit der Pinbelegung (© Jan Schulz, CC0)
