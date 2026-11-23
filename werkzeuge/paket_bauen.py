@@ -58,6 +58,14 @@ OHNE_BEISPIELE = (
     'libraries/VFS/examples/VFSMultipleMounts/',
     'libraries/Adafruit_ST7735_and_ST7789_Library/examples/shieldtest/',
     'libraries/Adafruit_ST7735_and_ST7789_Library/examples/seesaw_shield18_test/',
+    # USB-Host-Anschluss, SD-Karte, externer Flash, SAMD-Chips, Zusatzboards: hat der PBC+ nicht
+    'libraries/Adafruit_TinyUSB_Arduino/examples/DualRole/',
+    'libraries/Adafruit_TinyUSB_Arduino/examples/Host/',
+    'libraries/Adafruit_TinyUSB_Arduino/examples/MassStorage/msc_external_flash/',
+    'libraries/Adafruit_TinyUSB_Arduino/examples/MassStorage/msc_external_flash_sdcard/',
+    'libraries/Adafruit_TinyUSB_Arduino/examples/MassStorage/msc_internal_flash_samd/',
+    'libraries/Adafruit_TinyUSB_Arduino/examples/MassStorage/msc_sdfat/',
+    'libraries/Adafruit_TinyUSB_Arduino/examples/HID/hid_composite_joy_featherwing/',
 )
 WINDOWS = ('x86_64-mingw32', 'i686-mingw32')
 LINUX64 = 'x86_64-pc-linux-gnu'
